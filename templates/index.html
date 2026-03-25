@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Welcome to Our School</h1>
+    <p>Providing quality education for a brighter future</p>
+    <a href="/admission">
+        <button>Apply Now</button>
+    </a>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>📅 Events</h3>
+        <p>Stay updated with school activities</p>
+    </div>
+
+    <div class="card">
+        <h3>📘 Programs</h3>
+        <p>Explore our academic curriculum</p>
+    </div>
+
+    <div class="card">
+        <h3>👨‍👩‍👧 Parents</h3>
+        <p>Access student dashboard & updates</p>
+    </div>
+
+</div>
+
+<div class="contact-section">
+    <h2>Contact Us</h2>
+
+    <div class="contact-box">
+        <form method="POST" action="/contact">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <iframe
+            src="https://maps.google.com/maps?q=punjab&t=&z=13&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+    </div>
+</div>
+
+{% endblock %}

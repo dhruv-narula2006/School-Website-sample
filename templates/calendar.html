@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>School Calendar</h2>
+
+<select id="gradeFilter">
+    <option value="">All Grades</option>
+    <option value="9">Grade 9</option>
+    <option value="10">Grade 10</option>
+    <option value="12">Grade 12</option>
+</select>
+
+<div id="calendar"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let calendarEl = document.getElementById('calendar');
+    let gradeFilter = document.getElementById('gradeFilter');
+
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: function(fetchInfo, successCallback) {
+            fetch('/events')
+            .then(res => res.json())
+            .then(data => {
+                let grade = gradeFilter.value;
+                if (grade) {
+                    data = data.filter(e => e.grade === grade);
+                }
+                successCallback(data);
+            });
+        }
+    });
+
+    gradeFilter.addEventListener('change', () => calendar.refetchEvents());
+
+    calendar.render();
+});
+</script>
+{% endblock %}
